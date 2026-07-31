@@ -1,0 +1,15 @@
+{
+  "validUser": {
+    "email": "vonghi168@gmail.com",
+    "password": "0123456bB",
+    "name": "nghivv"
+  },
+  "invalidUser": {
+    "email": "wrong_user@infina.test",
+    "password": "WrongPassword123"
+  },
+  "messages": {
+    "successRedirectUrl": "https://ai-robot-store.vercel.app/",
+    "loginErrorText": "Email hoặc mật khẩu không đúng"
+  }
+}

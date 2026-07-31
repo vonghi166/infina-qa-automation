@@ -11,7 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 2 : undefined,
   reporter: [['html'], ['list']],
   use: {
-    baseURL: process.env.BASE_URL || 'https://demoqa.com',
+    baseURL: process.env.BASE_URL || 'https://ai-robot-store.vercel.app',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

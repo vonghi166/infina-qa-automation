@@ -1,0 +1,16 @@
+{
+  "validUser": {
+    "name": "QA Automation",
+    "emailPrefix": "infina_qc_",
+    "password": "SecurePassword@123",
+    "confirmPassword": "SecurePassword@123"
+  },
+  "invalidEmails": [
+    "invalidemail.com",
+    "test@@gmail.com",
+    "user@domain"
+  ],
+  "messages": {
+    "successRedirectPattern": "/\\/(login|dashboard|home|)/"
+  }
+}
