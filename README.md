@@ -1,81 +1,176 @@
-🚀 Hướng Dẫn Cài Đặt và Chạy Tự Động Hóa Kiểm Thử (Automation Testing)
-Chào mừng bạn đến với hệ thống kiểm thử tự động của dự án AI Robot Store. Tài liệu này hướng dẫn chi tiết từng bước để bất kỳ ai cũng có thể cài đặt, cấu hình và chạy kiểm thử mà không cần phải biết lập trình chuyên sâu.
+# 🚀 Hướng Dẫn Cài Đặt và Chạy Tự Động Hóa Kiểm Thử (Automation Testing)
 
-📋 Mục Lục
-Yêu Cầu Hệ Thống (Chuẩn bị trước khi bắt đầu)
+Chào mừng bạn đến với hệ thống kiểm thử tự động của dự án **AI Robot Store**.
 
-Cài Đặt Dự Án (Chỉ làm 1 lần duy nhất)
+Tài liệu này hướng dẫn chi tiết từng bước để bất kỳ ai cũng có thể cài đặt, cấu hình và chạy kiểm thử mà không cần phải biết lập trình chuyên sâu.
 
-Cấu Hình Môi Trường (.env)
+---
 
-Cách Chạy Kiểm Thử (Thực thi các kịch bản test)
+# 📋 Mục Lục
 
-Xem Báo Cáo Kết Quả (Test Report)
+1. [Yêu Cầu Hệ Thống](#1-yêu-cầu-hệ-thống--lưu-ý-quan-trọng-windows)
+2. [Cài Đặt Dự Án](#2-cài-đặt-dự-án)
+3. [Cấu Hình Môi Trường](#3-cấu-hình-môi-trường)
+4. [Cách Chạy Kiểm Thử](#4-cách-chạy-kiểm-thử)
+5. [Xem Báo Cáo Kết Quả](#5-xem-báo-cáo-kết-quả-test-report)
 
-1. Yêu Cầu Hệ Thống & Lưu Ý Quan Trọng (Windows)
-A. Yêu Cầu Phần Mềm
-Node.js (Phiên bản v18 trở lên).
-Cách kiểm tra: Mở cửa sổ dòng lệnh và gõ node -v.
+---
 
-B. Lưu ý đặc biệt cho người dùng Windows (Lỗi chặn Script trong PowerShell)
-Nếu bạn gặp thông báo lỗi kiểu như npx.ps1 cannot be loaded because running scripts is disabled on this system, đừng hoảng hốt! Đây là cơ chế bảo mật mặc định của Windows PowerShell. Hãy xử lý theo các bước sau chỉ một lần duy nhất:
-Nhấn phím Windows, gõ chữ PowerShell.
-Nhấp chuột phải vào Windows PowerShell và chọn Run as administrator (Chạy với quyền Quản trị viên).
-Gõ câu lệnh sau vào cửa sổ PowerShell và nhấn Enter:
+# 1. Yêu Cầu Hệ Thống & Lưu Ý Quan Trọng (Windows)
 
+## A. Yêu Cầu Phần Mềm
+
+- Cài đặt **Node.js phiên bản 18 trở lên**.
+
+Kiểm tra phiên bản:
+
+```bash
+node -v
+```
+
+---
+
+## B. Lưu ý đặc biệt cho người dùng Windows
+
+Nếu gặp lỗi:
+
+```text
+npx.ps1 cannot be loaded because running scripts is disabled on this system
+```
+
+Đây là cơ chế bảo mật mặc định của **Windows PowerShell**.
+
+Chỉ cần thực hiện **một lần duy nhất**:
+
+### Bước 1
+
+Mở **PowerShell** bằng quyền **Administrator**.
+
+### Bước 2
+
+Chạy lệnh:
+
+```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
-Khi hệ thống hỏi xác nhận, nhập chữ Y (Yes) rồi nhấn Enter.
-Đóng cửa sổ PowerShell đó lại và bạn đã sẵn sàng chạy lệnh bình thường!
+### Bước 3
 
-2. Cài Đặt Dự Án
-Mở cửa sổ dòng lệnh (Terminal trên Mac hoặc Command Prompt/PowerShell trên Windows) tại thư mục chứa dự án và thực hiện các lệnh sau:
+Khi được hỏi xác nhận:
 
-Bước A: Di chuyển vào thư mục dự án
+```text
+Y
+```
+
+rồi nhấn **Enter**.
+
+### Bước 4
+
+Đóng PowerShell và tiếp tục sử dụng bình thường.
+
+---
+
+# 2. Cài Đặt Dự Án
+
+Mở **Terminal**, **Command Prompt** hoặc **PowerShell** tại thư mục chứa dự án.
+
+## Bước A. Di chuyển vào thư mục dự án
+
+```bash
 cd path/to/infina-qa-automation
+```
 
-Bước B: Tải và cài đặt các thư viện cần thiết
-Lệnh này sẽ tự động tải các công cụ lập trình và kiểm thử cần thiết vào máy của bạn:
+---
+
+## Bước B. Cài đặt các thư viện
+
+Lệnh này sẽ tải toàn bộ thư viện cần thiết.
+
+```bash
 npm install
+```
 
-Bước C: Cài đặt trình duyệt tự động
-Playwright cần cài đặt các trình duyệt chuyên dụng để chạy kiểm thử ngầm:
+---
+
+## Bước C. Cài đặt trình duyệt Playwright
+
+```bash
 npx playwright install
+```
 
-3. Cấu Hình Môi Trường
-Hệ thống cần biết địa chỉ trang web cần kiểm tra thông qua file cấu hình môi trường:
-Nhìn vào thư mục gốc của dự án, tìm file mẫu .env.example (hoặc tạo một file mới tên là .env).
-Mở file đó lên và điền đường dẫn trang web (Base URL) của hệ thống cần test:
+---
+
+# 3. Cấu Hình Môi Trường
+
+Trong thư mục gốc của dự án:
+
+- Tìm file `.env.example`
+- Hoặc tạo mới file `.env`
+
+Sau đó khai báo địa chỉ hệ thống cần kiểm thử:
+
+```env
 BASE_URL=https://ai-robot-store.vercel.app
+```
 
-4. Cách Chạy Kiểm Thử
-Tùy thuộc vào mục đích kiểm tra, bạn có thể chọn một trong các cách chạy dưới đây:
+---
 
-🌟 Cách 1: Chạy tương tác giao diện (Khuyên dùng cho Non-IT / Dễ quan sát nhất)
-Lệnh này sẽ mở ra một bảng điều khiển trực quan trên màn hình, giúp bạn bấm nút chạy từng kịch bản và nhìn thấy hệ thống tự động click, nhập liệu giống như người thật:
+# 4. Cách Chạy Kiểm Thử
 
+## 🌟 Cách 1. Chạy giao diện tương tác (Khuyến nghị)
+
+Mở giao diện trực quan để chọn và chạy từng kịch bản test.
+
+```bash
 npx playwright test --ui
+```
 
-👁️ Cách 2: Chạy hiển thị trực tiếp trình duyệt
-Ép trình duyệt tự động mở lên, chạy xuyên suốt kịch bản để bạn theo dõi quá trình máy làm việc:
+---
 
+## 👁️ Cách 2. Chạy có hiển thị trình duyệt
+
+Cho phép quan sát toàn bộ quá trình tự động thao tác trên trình duyệt.
+
+```bash
 npx playwright test --headed
+```
 
-⚡ Cách 3: Chạy ẩn (Nhanh nhất, chạy ngầm dưới nền)
-Phù hợp khi bạn muốn kiểm tra nhanh toàn bộ hệ thống mà không cần bật cửa sổ trình duyệt:
+---
 
+## ⚡ Cách 3. Chạy chế độ ẩn (Nhanh nhất)
+
+Chạy toàn bộ test ở chế độ nền.
+
+```bash
 npx playwright test
+```
 
-🎯 Cách 4: Chạy một file kiểm thử riêng lẻ
-Nếu bạn chỉ muốn kiểm tra tính năng tính toán giỏ hàng (cartTotal.spec.ts):
+---
 
+## 🎯 Cách 4. Chạy một file kiểm thử
+
+Ví dụ chỉ chạy file `cartTotal.spec.ts`.
+
+```bash
 npx playwright test tests/cartTotal.spec.ts
+```
 
-5. Xem Báo Cáo Kết Quả (Test Report)
-Sau khi quá trình kiểm thử hoàn tất, hệ thống sẽ tự động tổng hợp kết quả thành một trang web báo cáo chi tiết (bao gồm cả hình ảnh chụp màn hình lúc lỗi và video quay lại quá trình test).
+---
 
-Để mở xem báo cáo, bạn chỉ cần gõ lệnh:
+# 5. Xem Báo Cáo Kết Quả (Test Report)
 
+Sau khi chạy test xong, Playwright sẽ tự động tạo báo cáo.
+
+Báo cáo bao gồm:
+
+- ✅ Test Pass / Fail
+- 📸 Screenshot khi lỗi
+- 📄 Log chi tiết
+
+Mở báo cáo bằng lệnh:
+
+```bash
 npx playwright show-report
+```
 
-Trình duyệt sẽ tự động bật lên một giao diện báo cáo chuyên nghiệp, cho bạn biết kịch bản nào Pass (Thành công) và kịch bản nào Fail (Thất bại).
+Trình duyệt sẽ tự động mở trang báo cáo để xem kết quả.
